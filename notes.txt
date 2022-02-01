@@ -1,0 +1,29 @@
+Constructor
+get derived
+Render
+Component Did Mount
+Component did catch -- if error is there
+Component willunmount -- if unmounts
+
+
+get derived
+Should Component Update
+Render
+Get Snapshot before update
+Component Did Update
+Component Did Catch
+
+willRecieveProps will rendering once props changes
+
+Constructor
+willMount
+Render
+Did Mount
+willRecieveProps
+
+
+Updation : 
+
+WillReceiveprops
+Render
+Did Update

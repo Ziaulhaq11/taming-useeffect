@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 
+//Just created a reusable function
 const useCallbackRef = (callback) => {
   const callbackRef = useRef(callback);
   useLayoutEffect(() => {

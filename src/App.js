@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "./App.css";
 
 import { useFetch } from "./useFetch";
+import { useFetchPrevious } from "./useFetchPrevious";
 
 const useStopwatch = () => {
   const [count, setCount] = useState(0);
@@ -9,10 +10,13 @@ const useStopwatch = () => {
   useEffect(() => {
     console.log("useStopwatch useEffect");
     const interval = setInterval(() => {
-      console.log(`Count = ${count}`);
       setCount((prev) => prev + 1);
+      console.log(`Count = ${count}`);
     }, 1000);
-    return () => clearInterval(interval);
+    return () => {
+      console.log('cleanup')
+      clearInterval(interval)
+    };
   }, []);
 
   return count;
@@ -20,8 +24,10 @@ const useStopwatch = () => {
 
 function App() {
   const [url, setUrl] = useState(null);
+  // const myOptions = useMemo(() => ({ url }), [url]) This will work but not practical
+  // const {data } = useFetch(myOptions)
   const count = useStopwatch();
-  const { data } = useFetch({ url, onSuccess: () => console.log("success") });
+  const { data } = useFetchPrevious({ url, onSuccess: () => console.log("success") });
 
   console.log("App rendering");
 
